@@ -5,65 +5,591 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>G on the Glow | Mobile Spray Tanning</title>
+  <meta name="description" content="G on the Glow offers custom mobile spray tanning brought directly to you.">
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8f1ed;
-      color: #392f2b;
-      text-align: center;
+    :root {
+      --cream: #F7F3ED;
+      --soft-white: #FFFDFC;
+      --blush: #E8C9C5;
+      --light-blush: #F3E3E0;
+      --beige: #D8C7B8;
+      --espresso: #332A27;
+      --muted: #756A65;
     }
 
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
+    * {
       box-sizing: border-box;
-    }
-
-    .brand {
-      font-size: 18px;
-      letter-spacing: 6px;
-      margin-bottom: 45px;
-    }
-
-    h1 {
-      font-family: Georgia, serif;
-      font-weight: normal;
-      font-size: clamp(55px, 10vw, 110px);
-      line-height: .95;
       margin: 0;
+      padding: 0;
     }
 
-    .subtitle {
-      margin-top: 25px;
-      font-size: 16px;
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--espresso);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(247, 243, 237, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(51, 42, 39, 0.10);
+    }
+
+    .nav-inner {
+      max-width: 1300px;
+      margin: auto;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--espresso);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--espresso);
+      text-decoration: none;
+      font-size: 11px;
       letter-spacing: 2px;
     }
+
+    .nav-book {
+      border: 1px solid var(--espresso);
+      padding: 11px 17px;
+    }
+
+    /* BUTTONS */
 
     .button {
       display: inline-block;
-      margin-top: 40px;
-      padding: 16px 32px;
-      background: #d9b8b2;
-      color: #392f2b;
+      padding: 16px 30px;
+      background: var(--espresso);
+      color: var(--soft-white);
       text-decoration: none;
       letter-spacing: 2px;
-      font-size: 13px;
+      font-size: 11px;
+      transition: 0.3s ease;
+    }
+
+    .button:hover {
+      background: var(--blush);
+      color: var(--espresso);
+    }
+
+    .button-light {
+      background: var(--soft-white);
+      color: var(--espresso);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 90px 9%;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 4px;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(62px, 8vw, 125px);
+      font-weight: normal;
+      line-height: 0.9;
+      letter-spacing: -4px;
+    }
+
+    .hero-description {
+      max-width: 480px;
+      margin: 30px 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .hero-copy .button {
+      align-self: flex-start;
+    }
+
+    .hero-visual {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(232,201,197,0.95),
+          rgba(216,199,184,0.75)
+        );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 650px;
+      padding: 50px;
+    }
+
+    .hero-mark {
+      width: min(390px, 80%);
+      aspect-ratio: 1;
+      border: 1px solid rgba(51,42,39,.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Georgia, serif;
+      font-size: clamp(140px, 18vw, 260px);
+      font-style: italic;
+      color: rgba(51,42,39,.82);
+    }
+
+    /* INTRO */
+
+    .intro {
+      background: var(--soft-white);
+      text-align: center;
+      padding: 130px 8%;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .intro h2,
+    .section-title {
+      font-family: Georgia, serif;
+      font-size: clamp(40px, 5vw, 70px);
+      font-weight: normal;
+      line-height: 1.05;
+    }
+
+    .intro p {
+      max-width: 650px;
+      margin: 30px auto 0;
+      color: var(--muted);
+    }
+
+    /* SERVICES */
+
+    .services {
+      padding: 120px 7%;
+    }
+
+    .section-heading {
+      max-width: 1300px;
+      margin: 0 auto 55px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+    }
+
+    .section-heading p {
+      max-width: 390px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .service-grid {
+      max-width: 1300px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service {
+      background: var(--soft-white);
+      padding: 45px 35px;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-number {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--muted);
+    }
+
+    .service h3 {
+      font-family: Georgia, serif;
+      font-size: 32px;
+      font-weight: normal;
+      margin: 35px 0 15px;
+    }
+
+    .service p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .price {
+      margin-top: auto;
+      padding-top: 30px;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    /* HOW IT WORKS */
+
+    .how {
+      background: var(--blush);
+      padding: 120px 7%;
+      text-align: center;
+    }
+
+    .steps {
+      max-width: 1100px;
+      margin: 70px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .step {
+      padding: 30px 50px;
+      border-right: 1px solid rgba(51,42,39,.25);
+    }
+
+    .step:last-child {
+      border-right: none;
+    }
+
+    .step-number {
+      font-family: Georgia, serif;
+      font-size: 65px;
+      font-style: italic;
+    }
+
+    .step h3 {
+      margin: 12px 0;
+      letter-spacing: 3px;
+      font-size: 12px;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: #675954;
+    }
+
+    /* MEET G */
+
+    .meet {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 650px;
+      background: var(--soft-white);
+    }
+
+    .meet-photo {
+      background:
+        linear-gradient(
+          145deg,
+          var(--beige),
+          var(--light-blush)
+        );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      letter-spacing: 3px;
+      font-size: 11px;
+    }
+
+    .meet-copy {
+      padding: 100px 12%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .meet-copy p {
+      margin-top: 28px;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    /* PREP */
+
+    .guides {
+      padding: 120px 7%;
+    }
+
+    .guide-grid {
+      max-width: 1300px;
+      margin: 60px auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .guide {
+      padding: 60px;
+      min-height: 430px;
+    }
+
+    .guide:first-child {
+      background: var(--light-blush);
+    }
+
+    .guide:last-child {
+      background: var(--beige);
+    }
+
+    .guide h3 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+      font-size: 42px;
+      margin-bottom: 30px;
+    }
+
+    .guide ul {
+      list-style: none;
+    }
+
+    .guide li {
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(51,42,39,.18);
+      font-size: 14px;
+    }
+
+    /* FAQ */
+
+    .faq {
+      background: var(--soft-white);
+      padding: 120px 7%;
+    }
+
+    .faq-inner {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    details {
+      border-bottom: 1px solid #D7CEC7;
+      padding: 25px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      font-family: Georgia, serif;
+      font-size: 21px;
+    }
+
+    details p {
+      color: var(--muted);
+      margin-top: 18px;
+      max-width: 720px;
+    }
+
+    /* BOOKING */
+
+    .booking {
+      background: var(--espresso);
+      color: var(--soft-white);
+      text-align: center;
+      padding: 130px 7%;
+    }
+
+    .booking h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(55px, 8vw, 110px);
+      font-weight: normal;
+      line-height: .95;
+    }
+
+    .booking p {
+      max-width: 550px;
+      margin: 30px auto;
+      color: #DCCFC8;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: var(--cream);
+      padding: 60px 7% 35px;
+    }
+
+    .footer-main {
+      max-width: 1300px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-logo {
+      font-family: Georgia, serif;
+      font-size: 28px;
+      letter-spacing: 4px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--espresso);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    .copyright {
+      max-width: 1300px;
+      margin: 45px auto 0;
+      padding-top: 25px;
+      border-top: 1px solid rgba(51,42,39,.15);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--muted);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .nav-links a:not(.nav-book) {
+        display: none;
+      }
+
+      .nav-logo {
+        font-size: 15px;
+        letter-spacing: 3px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        padding: 90px 7% 70px;
+        min-height: 650px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-visual {
+        min-height: 450px;
+      }
+
+      .service-grid,
+      .steps,
+      .meet,
+      .guide-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .step {
+        border-right: none;
+        border-bottom: 1px solid rgba(51,42,39,.25);
+      }
+
+      .step:last-child {
+        border-bottom: none;
+      }
+
+      .meet-photo {
+        min-height: 500px;
+      }
+
+      .meet-copy {
+        padding: 80px 8%;
+      }
+
+      .guide {
+        padding: 45px 30px;
+      }
+
+      .footer-main {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 
+
 <body>
 
-  <section class="hero">
 
-    <div class="brand">
+<!-- NAVIGATION -->
+
+<nav>
+  <div class="nav-inner">
+
+    <a class="nav-logo" href="#home">
       G ON THE GLOW
+    </a>
+
+    <div class="nav-links">
+      <a href="#services">SERVICES</a>
+      <a href="#about">ABOUT</a>
+      <a href="#prep">PREP</a>
+      <a href="#faq">FAQ</a>
+
+      <!-- REPLACE # WITH YOUR SQUARE BOOKING LINK LATER -->
+      <a class="nav-book" href="#">
+        BOOK
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+  <div class="hero-copy">
+
+    <div class="eyebrow">
+      CUSTOM MOBILE SPRAY TANNING
     </div>
 
     <h1>
@@ -71,15 +597,404 @@
       delivered.
     </h1>
 
-    <div class="subtitle">
-      CUSTOM MOBILE SPRAY TANNING
-    </div>
+    <p class="hero-description">
+      A customized sunless glow brought directly to you.
+      G on the Glow makes getting bronzed effortless,
+      comfortable and completely personalized.
+    </p>
 
+    <!-- REPLACE # WITH SQUARE LINK -->
     <a class="button" href="#">
       BOOK YOUR GLOW
     </a>
 
-  </section>
+  </div>
+
+
+  <div class="hero-visual">
+
+    <!-- THIS WILL LATER BE REPLACED WITH YOUR REAL LOGO OR PHOTO -->
+
+    <div class="hero-mark">
+      G
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- INTRO -->
+
+<section class="intro">
+
+  <div class="section-label">
+    G ON THE GLOW
+  </div>
+
+  <h2>
+    A custom glow.<br>
+    Without leaving home.
+  </h2>
+
+  <p>
+    Skip the salon. G on the Glow brings the spray tan experience
+    directly to you with customized color designed to complement
+    your skin tone and your desired level of glow.
+  </p>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section class="services" id="services">
+
+  <div class="section-heading">
+
+    <div>
+      <div class="section-label">
+        THE GLOW MENU
+      </div>
+
+      <h2 class="section-title">
+        Pick your glow.
+      </h2>
+    </div>
+
+    <p>
+      These services and prices are temporary while the official
+      G on the Glow menu is being created.
+    </p>
+
+  </div>
+
+
+  <div class="service-grid">
+
+    <div class="service">
+      <span class="service-number">01</span>
+
+      <h3>The Signature Glow</h3>
+
+      <p>
+        A customized full-body spray tan designed around your
+        skin tone and desired depth of color.
+      </p>
+
+      <div class="price">
+        $XX
+      </div>
+    </div>
+
+
+    <div class="service">
+      <span class="service-number">02</span>
+
+      <h3>The Rapid Glow</h3>
+
+      <p>
+        Customized color with a shorter rinse window for
+        clients who need their glow on a tighter schedule.
+      </p>
+
+      <div class="price">
+        $XX
+      </div>
+    </div>
+
+
+    <div class="service">
+      <span class="service-number">03</span>
+
+      <h3>Group Glow</h3>
+
+      <p>
+        Mobile tanning for friends, events, trips and special
+        occasions. Perfect when everyone wants to glow together.
+      </p>
+
+      <div class="price">
+        CONTACT FOR PRICING
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section class="how">
+
+  <div class="section-label">
+    HOW IT WORKS
+  </div>
+
+  <h2 class="section-title">
+    Glow in three.
+  </h2>
+
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-number">01</div>
+      <h3>BOOK</h3>
+      <p>
+        Choose your service, date and appointment time.
+      </p>
+    </div>
+
+
+    <div class="step">
+      <div class="step-number">02</div>
+      <h3>PREP</h3>
+      <p>
+        Follow your simple pre-tan instructions before your appointment.
+      </p>
+    </div>
+
+
+    <div class="step">
+      <div class="step-number">03</div>
+      <h3>GLOW</h3>
+      <p>
+        I come to you and create your customized sunless tan.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MEET G -->
+
+<section class="meet" id="about">
+
+  <div class="meet-photo">
+    YOUR PHOTO WILL GO HERE
+  </div>
+
+
+  <div class="meet-copy">
+
+    <div class="section-label">
+      MEET G
+    </div>
+
+    <h2 class="section-title">
+      The girl behind<br>
+      the glow.
+    </h2>
+
+    <p>
+      Hi, I'm Giuliana — the G behind G on the Glow.
+      I created G on the Glow to make getting a beautiful,
+      customized spray tan easier by bringing the entire
+      experience directly to you.
+    </p>
+
+    <p>
+      This section can later be replaced with your full story,
+      certifications, tanning philosophy and anything else
+      you'd like clients to know about you.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- PREP + AFTERCARE -->
+
+<section class="guides" id="prep">
+
+  <div class="section-heading">
+
+    <div>
+      <div class="section-label">
+        THE GLOW GUIDE
+      </div>
+
+      <h2 class="section-title">
+        Get the most<br>
+        from your tan.
+      </h2>
+    </div>
+
+  </div>
+
+
+  <div class="guide-grid">
+
+    <div class="guide">
+
+      <div class="section-label">
+        BEFORE
+      </div>
+
+      <h3>Prep your glow.</h3>
+
+      <ul>
+        <li>Exfoliate before your appointment.</li>
+        <li>Complete shaving before your tan.</li>
+        <li>Arrive with clean, dry skin.</li>
+        <li>Avoid lotions, oils and deodorant immediately beforehand.</li>
+        <li>Have loose, dark clothing ready for afterward.</li>
+      </ul>
+
+    </div>
+
+
+    <div class="guide">
+
+      <div class="section-label">
+        AFTER
+      </div>
+
+      <h3>Make it last.</h3>
+
+      <ul>
+        <li>Follow your personalized rinse time.</li>
+        <li>Avoid sweating or water before your first rinse.</li>
+        <li>Pat your skin dry instead of rubbing.</li>
+        <li>Moisturize regularly after your first rinse.</li>
+        <li>Avoid aggressive exfoliation while maintaining your tan.</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="faq" id="faq">
+
+  <div class="faq-inner">
+
+    <div class="section-label">
+      QUESTIONS, ANSWERED
+    </div>
+
+    <h2 class="section-title">
+      Glow FAQ.
+    </h2>
+
+
+    <details>
+      <summary>How long does a spray tan last?</summary>
+
+      <p>
+        Your results depend on your skin and aftercare.
+        Your final FAQ answer can be added here later.
+      </p>
+    </details>
+
+
+    <details>
+      <summary>When should I shower after my appointment?</summary>
+
+      <p>
+        Your rinse time depends on the solution used during
+        your appointment. You'll receive instructions for your specific tan.
+      </p>
+    </details>
+
+
+    <details>
+      <summary>What should I wear?</summary>
+
+      <p>
+        Loose, dark clothing is typically best after your appointment.
+        More detailed instructions can be added here.
+      </p>
+    </details>
+
+
+    <details>
+      <summary>Where do appointments take place?</summary>
+
+      <p>
+        G on the Glow is mobile, meaning the tanning experience
+        comes directly to you within the current service area.
+      </p>
+    </details>
+
+  </div>
+
+</section>
+
+
+<!-- BOOK -->
+
+<section class="booking">
+
+  <div class="section-label">
+    G ON THE GLOW
+  </div>
+
+  <h2>
+    Ready to<br>
+    glow?
+  </h2>
+
+  <p>
+    Choose your service and reserve your mobile spray tan appointment.
+  </p>
+
+  <!-- REPLACE # WITH SQUARE LINK -->
+
+  <a class="button button-light" href="#">
+    BOOK YOUR APPOINTMENT
+  </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-main">
+
+    <div>
+      <div class="footer-logo">
+        G ON THE GLOW
+      </div>
+
+      <p style="margin-top:12px; color:#756A65; font-size:13px;">
+        Mobile Spray Tanning
+      </p>
+    </div>
+
+
+    <div class="footer-links">
+
+      <!-- REPLACE THESE LINKS LATER -->
+
+      <a href="#">INSTAGRAM</a>
+      <a href="#services">SERVICES</a>
+      <a href="#prep">PREP</a>
+      <a href="#faq">FAQ</a>
+      <a href="#">BOOK</a>
+
+    </div>
+
+  </div>
+
+
+  <div class="copyright">
+    © 2026 G ON THE GLOW. ALL RIGHTS RESERVED.
+  </div>
+
+</footer>
+
 
 </body>
 </html>
